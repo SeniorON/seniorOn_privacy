@@ -35,6 +35,8 @@ async function request<T>(path: string, init: RequestInit, token?: string): Prom
 }
 
 export type LoginData = { usersId: number; name: string; loginId: string; role: 'CHILD' | 'PARENT'; accessToken: string }
+export type GoogleLoginData = { usersId: number | null; name: string; role: 'CHILD' | 'PARENT' | null; accessToken: string | null; newUser: boolean }
+export type KakaoWithdrawalLoginData = { usersId: number; name: string; role: 'CHILD' | 'PARENT'; accessToken: string; newUser: false }
 export type FamilyStatus = { familyId: number; seniorId: number | null; seniorName: string | null; managerType: 'PRIMARY' | 'SUB' | 'NONE' | null }
 export type OnboardingStatus = { families: FamilyStatus[] }
 export type FamilyMember = { usersId: number; name: string; role: 'CHILD' | 'PARENT'; canBecomePrimary: boolean; managerType: 'PRIMARY' | 'SUB' | 'NONE'; me: boolean }
@@ -42,6 +44,12 @@ export type FamilyMember = { usersId: number; name: string; role: 'CHILD' | 'PAR
 export const accountApi = {
   login: (loginId: string, password: string) => request<LoginData>('/users/login', {
     method: 'POST', body: JSON.stringify({ loginId, password }),
+  }),
+  googleLogin: (firebaseIdToken: string) => request<GoogleLoginData>('/social-accounts/login/google', {
+    method: 'POST', body: JSON.stringify({ firebaseIdToken }),
+  }),
+  kakaoWithdrawalLogin: (code: string) => request<KakaoWithdrawalLoginData>('/social-accounts/login/kakao/withdrawal', {
+    method: 'POST', body: JSON.stringify({ code }),
   }),
   onboarding: (token: string) => request<OnboardingStatus>('/users/me/onboarding-status', { method: 'GET' }, token),
   members: (token: string, seniorId: number) => request<FamilyMember[]>(`/family/members?seniorId=${encodeURIComponent(seniorId)}`, { method: 'GET' }, token),
