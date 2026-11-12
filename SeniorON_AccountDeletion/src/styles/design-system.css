@@ -1,0 +1,129 @@
+/* SeniorON_Admin develop palette and the supplied Figma typography scale. */
+@font-face {
+  font-family: Pretendard;
+  src: url('/assets/pretendard-regular.ttf') format('truetype');
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: Pretendard;
+  src: url('/assets/pretendard-medium.ttf') format('truetype');
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: Pretendard;
+  src: url('/assets/pretendard-semibold.ttf') format('truetype');
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: Pretendard;
+  src: url('/assets/pretendard-bold.ttf') format('truetype');
+  font-style: normal;
+  font-weight: 700 900;
+  font-display: swap;
+}
+
+:root {
+  --font-family: Pretendard, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --font-weight-regular: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+  --letter-spacing-body: -0.025em;
+  --line-height-body: 1.4;
+
+  --font-size-title-l: 44px;
+  --font-size-title-m: 38px;
+  --font-size-title-s: 32px;
+  --font-size-body-xl: 24px;
+  --font-size-body-l: 22px;
+  --font-size-body-m: 20px;
+  --font-size-body-s: 18px;
+  --font-size-body-xs: 16px;
+  --font-size-caption-m: 14px;
+  --font-size-caption-s: 12px;
+
+  --color-primary-300: #24351e;
+  --color-primary-200: #43641d;
+  --color-primary-100: #4a711d;
+  --color-green-1: #4fd715;
+  --color-green-2: #48bd16;
+  --color-green-3: #d8ffa4;
+  --color-green-text: #3d6331;
+  --color-completed-1: #316d11;
+  --color-completed-2: #e5f0d9;
+  --color-pending-1: #ca7f00;
+  --color-pending-2: #a06500;
+  --color-pending-3: #ffebc5;
+  --color-red-1: #c93440;
+  --color-red-2: #fEEDED;
+  --color-background-1: #f1f3f1;
+  --color-background-2: #e8ece5;
+  --color-background-3: #ecf7dc;
+  --color-background-4: #f4f5f1;
+  --color-background-5: #e3edd6;
+  --color-neutral-900: #222222;
+  --color-neutral-800: #404040;
+  --color-neutral-700: #585858;
+  --color-neutral-600: #767676;
+  --color-neutral-500: #9b9b9b;
+  --color-neutral-400: #aaaaaa;
+  --color-neutral-300: #cecece;
+  --color-neutral-200: #dedede;
+  --color-neutral-100: #e9e9ea;
+  --color-neutral-50: #f4f4f4;
+  --color-white: #ffffff;
+  --color-white-60: rgb(255 255 255 / 60%);
+  --color-white-16: rgb(255 255 255 / 16%);
+  --color-text-primary: #1c1b2a;
+  --color-focus: #a8be89;
+  --color-error-border: #c93440;
+  --color-error-text: #dd3939;
+  --radius-card: 12px;
+  --radius-pill: 50px;
+}
+
+.ds-title-s,
+.ds-body-xl-bold,
+.ds-body-m-semibold,
+.ds-body-xs-medium,
+.ds-body-xs-regular,
+.ds-caption-m-medium,
+.ds-caption-m-regular,
+.ds-caption-s-medium {
+  line-height: var(--line-height-body);
+  letter-spacing: var(--letter-spacing-body);
+}
+
+.ds-title-s { font-size: var(--font-size-title-s); font-weight: var(--font-weight-bold); }
+.ds-body-xl-bold { font-size: var(--font-size-body-xl); font-weight: var(--font-weight-bold); }
+.ds-body-m-semibold { font-size: var(--font-size-body-m); font-weight: var(--font-weight-semibold); }
+.ds-body-xs-medium { font-size: var(--font-size-body-xs); font-weight: var(--font-weight-medium); }
+.ds-body-xs-regular { font-size: var(--font-size-body-xs); font-weight: var(--font-weight-regular); }
+.ds-caption-m-medium { font-size: var(--font-size-caption-m); font-weight: var(--font-weight-medium); }
+.ds-caption-m-regular { font-size: var(--font-size-caption-m); font-weight: var(--font-weight-regular); }
+.ds-caption-s-medium { font-size: var(--font-size-caption-s); font-weight: var(--font-weight-medium); }
+
+.ds-badge {
+  display: inline-flex;
+  align-items: center;
+  min-height: 30px;
+  padding: 4px 10px;
+  border-radius: var(--radius-pill);
+  font-size: var(--font-size-body-xs);
+  font-weight: var(--font-weight-medium);
+  line-height: var(--line-height-body);
+  letter-spacing: var(--letter-spacing-body);
+}
+
+.ds-badge--neutral { background: var(--color-neutral-100); color: var(--color-neutral-600); }
+.ds-badge--pending { background: var(--color-pending-3); color: var(--color-pending-2); }
+.ds-badge--complete { background: var(--color-completed-2); color: var(--color-completed-1); }
