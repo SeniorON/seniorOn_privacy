@@ -2,6 +2,10 @@
 
 SeniorON 개인정보처리방침 및 계정 삭제 안내 페이지입니다.
 
+## 회원 탈퇴 React 앱
+
+웹 회원 탈퇴 React 프로젝트는 [`SeniorON_AccountDeletion/`](SeniorON_AccountDeletion/README.md)에 있습니다. 일반 로그인·주담당자 권한 양도·회원 탈퇴 API와 화면 흐름이 구현되어 있으며, 실행 방법과 현재 연동 상태는 앱 README를 확인하세요. 기존 GitHub Pages 게시 페이지에는 아직 연결되지 않았습니다.
+
 ## 게시 URL (GitHub Pages)
 
 - 개인정보처리방침: <https://senioron.github.io/seniorOn_privacy/>

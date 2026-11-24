@@ -45,7 +45,7 @@ TEMPLATE = """<!DOCTYPE html>
   <footer class="site-footer">
     <div class="box">
       <span>© 2026 SeniorON. All rights reserved.</span>
-      <span>문의: <a href="mailto:senioron.team@gmail.com">senioron.team@gmail.com</a></span>
+      <span>문의: <a href="mailto:senioron.official@gmail.com">senioron.official@gmail.com</a></span>
     </div>
   </footer>
 </body>
