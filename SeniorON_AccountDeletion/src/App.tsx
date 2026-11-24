@@ -8,7 +8,9 @@ import { accountApi, ApiError, type FamilyStatus, type LoginData } from './api/a
 import { TransferPage } from './pages/TransferPage'
 import { googleIdToken, googleLoginError } from './firebase'
 import { consumeKakaoCallback, startKakaoLogin } from './kakao'
+import { GoogleLogo } from './components/GoogleLogo'
 import './App.css'
+import policyDocument from '../../index.html?raw'
 
 function LoginPage({ onLogin, onGoogleLogin, onKakaoLogin, busy, serverError }: { onLogin: (id: string, password: string) => void; onGoogleLogin: () => void; onKakaoLogin: () => void; busy: boolean; serverError: string }) {
   const [email, setEmail] = useState('')
@@ -60,7 +62,7 @@ function LoginPage({ onLogin, onGoogleLogin, onKakaoLogin, busy, serverError }: 
         <button className="social-button kakao-button" type="button" aria-label="카카오로 로그인" disabled={busy} onClick={() => { clearLoginError(); setLoginNotice(''); onKakaoLogin() }}>
           <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3.5c-5.25 0-9.5 3.35-9.5 7.49 0 2.68 1.78 5.03 4.46 6.35l-.94 3.47a.4.4 0 0 0 .6.44l4.08-2.71c.42.05.85.07 1.3.07 5.25 0 9.5-3.35 9.5-7.49S17.25 3.5 12 3.5Z" /></svg>
         </button>
-        <button className="social-button google-button" type="button" aria-label="구글로 로그인" disabled={busy} onClick={() => { clearLoginError(); setLoginNotice(''); onGoogleLogin() }}><span aria-hidden="true">G</span></button>
+        <button className="social-button google-button" type="button" aria-label="구글로 로그인" disabled={busy} onClick={() => { clearLoginError(); setLoginNotice(''); onGoogleLogin() }}><GoogleLogo /></button>
       </div>
       {loginNotice && <p className="login-notice ds-caption-m-regular" role="status">{loginNotice}</p>}
       <div className="login-help">
@@ -72,7 +74,7 @@ function LoginPage({ onLogin, onGoogleLogin, onKakaoLogin, busy, serverError }: 
   </main>
 }
 
-function App() {
+function AccountDeletionApp() {
   const previewScreen = import.meta.env.DEV ? new URLSearchParams(window.location.search).get('screen') : null
   const [screen, setScreen] = useState<'login' | 'confirmation' | 'transfer' | 'complete'>(previewScreen === 'complete' ? 'complete' : previewScreen === 'confirmation' ? 'confirmation' : 'login')
   const [account, setAccount] = useState<LoginData | null>(null)
@@ -193,4 +195,11 @@ function App() {
   </div>
 }
 
-export default App
+export default function App() {
+  if (new URLSearchParams(window.location.search).get('page') !== 'privacy') return <AccountDeletionApp />
+  // Use the same repository-owned document as the public static privacy page.
+  const article = new DOMParser().parseFromString(policyDocument, 'text/html').querySelector('article.policy')!
+  return <div className="site-shell"><SiteHeader privacy />
+    <main className="privacy-document" dangerouslySetInnerHTML={{ __html: article.innerHTML }} />
+  </div>
+}
